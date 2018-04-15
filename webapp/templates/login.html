@@ -2,18 +2,17 @@
 
 {% block content %}
 	<h1> Sign In </h1>
+	{% from "form_helper.html" import render_field %}
 	<form action="login" method="post">
 		{{ form.hidden_tag() }}
-		<p>
-			{{ form.username.label }}
-			{{ form.username(size=22) }}
-			{% for error in form.username.errors %}
-				<span style="color: red;">[{{ error }}]</span>
-			{% endfor %}
-		</p>
+
+	    <dl>
+		    {{ render_field(form.username, size=20) }}
+
+	    </dl>
 		<p>
 			{{ form.password.label }}
-			{{ form.password(size=22) }}
+			{{ form.password(size=20) }}
 			{% for error in form.password.errors%}
 				<span style="color: red;">[{{ error }}]</span>
 			{%endfor%}
