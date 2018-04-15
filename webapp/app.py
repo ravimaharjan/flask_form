@@ -1,26 +1,15 @@
-from flask import Flask, render_template
-
+from flask import Flask
+from config import Config
+from applications.home import home_app
+from applications.auth import auth_app
 app = Flask(__name__)
+app.config.from_object(Config)
+app.register_blueprint(home_app)
+app.register_blueprint(auth_app)
+
 app.debug = True
 
 
-@app.route('/')
-@app.route('/index')
-def index():
-    user = {'username': 'FlaskUser'}
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template('index.html', title='Home', user=user, posts=posts)
-
-
 if __name__ == '__main__':
-    app.run()
+    app.run("127.0.0.1", 5001)
 
