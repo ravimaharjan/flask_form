@@ -1,5 +1,5 @@
 import sys
-print sys.path
+# print sys.path
 
 sys.path.append("/Users/ravi/workspace/Python/flask_form")
 from flask import Flask
