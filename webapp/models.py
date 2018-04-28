@@ -1,12 +1,15 @@
 from datetime import datetime
-from app import db
+from db_provider import db
 
 class User(db.Model):
+     __tablename__ = 'user'
+     __table_args__ = {'extend_existing': True}
      id = db.Column(db.Integer, primary_key=True)
      username = db.Column(db.String(60), index=True, unique=True)
-     email = db.Column(db.String(100), index=True, unique=True)
-     password_hash = db.Column(db.String(128))
-     posts = db.relationship('Post', backref='author', lazy='dynamic')
+     email = db.Column(db.String(101), index=True, unique=True)
+     age = db.Column(db.Integer)
+     posts = db.relationship('post', backref='author', lazy='dynamic')
+
 
     # def __repr__(self):
     # """
@@ -15,6 +18,8 @@ class User(db.Model):
     #     return '<User {}>'.format(self.username)  
 
 class Post(db.Model):
+    __tablename__ = 'post'
+    __table_args__ = {'extend_existing': True} 
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
