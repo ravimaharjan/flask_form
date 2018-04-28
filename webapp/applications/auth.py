@@ -1,6 +1,6 @@
-from applications import *
-from forms.login_form import LoginForm
-auth_app = Blueprint("auth_app", __name__, template_folder='templates')
+from webapp.applications import *
+from webapp.forms.login_form import LoginForm
+auth_app = Blueprint("auth_app", __name__, template_folder='../templates')
 
 @auth_app.route("/login", methods=['GET','POST'])
 def login():
